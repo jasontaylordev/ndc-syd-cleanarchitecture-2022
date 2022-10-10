@@ -1,110 +1,53 @@
-﻿using CaWorkshop.Domain.Entities;
-using CaWorkshop.Infrastructure.Data;
+﻿using CaWorkshop.Application.TodoLists.Commands.CreateTodoList;
+using CaWorkshop.Application.TodoLists.Commands.DeleteTodoList;
+using CaWorkshop.Application.TodoLists.Commands.UpdateTodoList;
+using CaWorkshop.Application.TodoLists.Queries.GetTodoLists;
+using CaWorkshop.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace CaWorkshop.WebUI.Controllers
+namespace CaWorkshop.WebUI.Controllers;
+
+public class TodoListsController : ApiControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TodoListsController : ControllerBase
+    // GET: api/TodoLists
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<TodoList>>> GetTodoLists()
     {
-        private readonly ApplicationDbContext _context;
+        return await Mediator.Send(new GetTodoLists());
+    }
 
-        public TodoListsController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+    // POST: api/TodoLists
+    [HttpPost]
+    public async Task<ActionResult<int>> PostTodoList(CreateTodoListCommand command)
+    {
+        return await Mediator.Send(command);
+    }
 
-        // GET: api/TodoLists
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoList>>> GetTodoLists()
-        {
-            return await _context.TodoLists
-                .Select(l => new TodoList
-                {
-                    Id = l.Id,
-                    Title = l.Title,
-                    Items = l.Items.Select(i => new TodoItem
-                    {
-                        Id = i.Id,
-                        ListId = i.ListId,
-                        Title = i.Title,
-                        Done = i.Done,
-                        Priority = i.Priority,
-                        Note = i.Note,
-                    }).ToList()
-                }).ToListAsync();
-        }
+    // PUT: api/TodoLists/5
+    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+    [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesDefaultResponseType]
+    public async Task<IActionResult> PutTodoList(int id, UpdateTodoListCommand command)
+    {
+        if (id != command.Id) return BadRequest();
 
-        // PUT: api/TodoLists/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesDefaultResponseType]
-        public async Task<IActionResult> PutTodoList(int id, TodoList todoList)
-        {
-            if (id != todoList.Id)
-            {
-                return BadRequest();
-            }
+        await Mediator.Send(command);
 
-            _context.Update(todoList);
+        return NoContent();
+    }
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TodoListExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+    // DELETE: api/TodoLists/5
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesDefaultResponseType]
+    public async Task<IActionResult> DeleteTodoList(int id)
+    {
+        await Mediator.Send(new DeleteTodoListCommand { Id = id });
 
-            return NoContent();
-        }
-
-        // POST: api/TodoLists
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<int>> PostTodoList(TodoList todoList)
-        {
-            _context.TodoLists.Add(todoList);
-            await _context.SaveChangesAsync();
-
-            return todoList.Id;
-        }
-
-        // DELETE: api/TodoLists/5
-        [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesDefaultResponseType]
-        public async Task<IActionResult> DeleteTodoList(int id)
-        {
-            var todoList = await _context.TodoLists.FindAsync(id);
-            if (todoList == null)
-            {
-                return NotFound();
-            }
-
-            _context.TodoLists.Remove(todoList);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool TodoListExists(int id)
-        {
-            return _context.TodoLists.Any(e => e.Id == id);
-        }
+        return NoContent();
     }
 }
