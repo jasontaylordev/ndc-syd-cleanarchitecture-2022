@@ -1,3 +1,4 @@
+using Ardalis.ListStartupServices;
 using CaWorkshop.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,8 @@ using (var scope = app.Services.CreateScope())
         throw;
     }
 }
+
+app.UseShowAllServicesMiddleware();
 #endif
 
 
