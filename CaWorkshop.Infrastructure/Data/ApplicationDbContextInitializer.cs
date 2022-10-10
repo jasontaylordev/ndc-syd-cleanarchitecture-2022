@@ -1,8 +1,8 @@
-﻿using CaWorkshop.WebUI.Models;
+﻿using CaWorkshop.Domain.Entities;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace CaWorkshop.WebUI.Data;
+namespace CaWorkshop.Infrastructure.Data;
 
 public class ApplicationDbContextInitialiser
 {
@@ -18,7 +18,7 @@ public class ApplicationDbContextInitialiser
         // Early development strategy
         //_context.Database.EnsureDeleted();
         //_context.Database.EnsureCreated();
-        
+
         // Late development strategy
         if (_context.Database.IsSqlServer())
         {
