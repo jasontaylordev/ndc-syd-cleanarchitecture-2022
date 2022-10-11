@@ -1,4 +1,5 @@
 ﻿using CaWorkshop.Application.Common.Interfaces;
+using CaWorkshop.Application.Common.Services.Data;
 using CaWorkshop.Infrastructure.Data;
 using CaWorkshop.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authentication;
@@ -18,6 +19,8 @@ public static class ConfigureServices
         services.AddScoped<IApplicationDbContext>(provider =>
             provider.GetRequiredService<ApplicationDbContext>());
 
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        
         services.AddScoped<ApplicationDbContextInitialiser>();
 
         services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)

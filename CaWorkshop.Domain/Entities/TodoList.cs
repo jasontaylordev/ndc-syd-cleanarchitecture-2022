@@ -1,8 +1,10 @@
-﻿namespace CaWorkshop.Domain.Entities;
+﻿using CaWorkshop.Domain.Common;
 
-public class TodoList
+namespace CaWorkshop.Domain.Entities;
+
+public class TodoList : BaseEntity
 {
-    public int Id { get; set; }
+    //public int Id { get; set; }
 
     public string Title { get; set; } = string.Empty;
 

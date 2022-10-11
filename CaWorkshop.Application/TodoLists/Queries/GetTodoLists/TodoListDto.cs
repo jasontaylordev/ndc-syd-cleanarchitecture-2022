@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CaWorkshop.Application.Common.Mappings;
+﻿using CaWorkshop.Application.Common.Mappings;
 using CaWorkshop.Domain.Entities;
 
 namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists;

@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CaWorkshop.Domain.Common;
 
 namespace CaWorkshop.Domain.Entities;
 
-public class TodoItem
+public class TodoItem : BaseEntity
 {
-    public int Id { get; set; }
-
     public int ListId { get; set; }
 
     [Required]
