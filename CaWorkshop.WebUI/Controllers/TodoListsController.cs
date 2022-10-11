@@ -12,7 +12,7 @@ public class TodoListsController : ApiControllerBase
     [HttpGet]
     public async Task<ActionResult<TodosVm>> GetTodoLists()
     {
-        return await Mediator.Send(new GetTodoLists());
+        return await Mediator.Send(new GetTodoListsQuery());
     }
 
     // POST: api/TodoLists

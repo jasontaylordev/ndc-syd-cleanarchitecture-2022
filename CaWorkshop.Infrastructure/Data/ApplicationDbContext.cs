@@ -10,7 +10,9 @@ namespace CaWorkshop.Infrastructure.Data;
 
 public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, IApplicationDbContext
 {
-    public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
+    public ApplicationDbContext(
+        DbContextOptions options, 
+        IOptions<OperationalStoreOptions> operationalStoreOptions)
         : base(options, operationalStoreOptions)
     {
     }

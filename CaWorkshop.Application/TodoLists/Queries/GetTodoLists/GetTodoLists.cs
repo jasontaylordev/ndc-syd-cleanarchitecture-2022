@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CaWorkshop.Application.TodoLists.Queries.GetTodoLists;
 
-public class GetTodoLists : IRequest<TodosVm>
+public class GetTodoListsQuery : IRequest<TodosVm>
 {
     //public string TitleFilter { get; set; }
 }
 
-public class GetTodoListsQueryHandler : IRequestHandler<GetTodoLists, TodosVm>
+public class GetTodoListsQueryHandler : IRequestHandler<GetTodoListsQuery, TodosVm>
 {
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ public class GetTodoListsQueryHandler : IRequestHandler<GetTodoLists, TodosVm>
         _mapper = mapper;
     }
 
-    public async Task<TodosVm> Handle(GetTodoLists request, CancellationToken cancellationToken)
+    public async Task<TodosVm> Handle(GetTodoListsQuery request, CancellationToken cancellationToken)
     {
         return new TodosVm
         {

@@ -18,6 +18,7 @@ public class CreateTodoListCommandValidator
             .MaximumLength(240)
             .NotEmpty()
             .MustAsync(BeUniqueTitle)
+                .WithErrorCode("UNIQUE_TITLE")
                 .WithMessage("'Title' must be unique.");
     }
 

@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaWorkshop.Application", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaWorkshop.Infrastructure", "CaWorkshop.Infrastructure\CaWorkshop.Infrastructure.csproj", "{DCA9CA1D-F968-457E-8959-64A16833F5EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaWorkshop.Application.UnitTests", "CaWorkshop.Application.UnitTests\CaWorkshop.Application.UnitTests.csproj", "{C793EEF6-B8A7-4688-82F6-9BD0027EDD8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{DCA9CA1D-F968-457E-8959-64A16833F5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCA9CA1D-F968-457E-8959-64A16833F5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCA9CA1D-F968-457E-8959-64A16833F5EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C793EEF6-B8A7-4688-82F6-9BD0027EDD8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C793EEF6-B8A7-4688-82F6-9BD0027EDD8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C793EEF6-B8A7-4688-82F6-9BD0027EDD8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C793EEF6-B8A7-4688-82F6-9BD0027EDD8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

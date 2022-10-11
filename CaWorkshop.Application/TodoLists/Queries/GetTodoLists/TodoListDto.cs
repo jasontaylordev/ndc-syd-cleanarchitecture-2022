@@ -9,6 +9,8 @@ public class TodoListDto : IMapFrom<TodoList>
 
     public string Title { get; set; } = string.Empty;
 
+    public string Colour { get; set; } = string.Empty;
+
     public IList<TodoItemDto> Items { get; set; }
         = new List<TodoItemDto>();
 }
