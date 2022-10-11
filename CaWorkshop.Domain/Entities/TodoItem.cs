@@ -3,8 +3,10 @@ using CaWorkshop.Domain.Common;
 
 namespace CaWorkshop.Domain.Entities;
 
-public class TodoItem : BaseEntity
+public class TodoItem : AuditableEntity
 {
+    public int Id { get; set; }
+    
     public int ListId { get; set; }
 
     [Required]

@@ -1,6 +1,7 @@
 ﻿using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Application.Common.Services.Data;
 using CaWorkshop.Infrastructure.Data;
+using CaWorkshop.Infrastructure.Data.Interceptors;
 using CaWorkshop.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,10 @@ public static class ConfigureServices
 
         services.AddAuthentication()
             .AddIdentityServerJwt();
+
+        services.AddScoped<IIdentityService, IdentityService>();
+
+        services.AddScoped<AuditableEntitySaveChangesInterceptor>();
 
         return services;
     }
