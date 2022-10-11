@@ -10,7 +10,8 @@ public class WeatherForecastController : ApiControllerBase
     };
 
     [HttpGet]
-    public IEnumerable<WeatherForecast> Get()
+    [Route("[action]")]
+    public IEnumerable<WeatherForecast> GetAbc()
     {
         return Enumerable.Range(1, 3).Select(index => new WeatherForecast
         {

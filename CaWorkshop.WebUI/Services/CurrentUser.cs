@@ -12,7 +12,7 @@ public class CurrentUser : ICurrentUser
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public string? UserId => _httpContextAccessor.HttpContext?
+    public string UserId => _httpContextAccessor.HttpContext?
                             .User?
-                            .FindFirstValue(ClaimTypes.NameIdentifier);
+                            .FindFirstValue(ClaimTypes.NameIdentifier) ?? string.Empty;
 }

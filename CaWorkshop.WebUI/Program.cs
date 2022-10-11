@@ -48,10 +48,16 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseOpenApi();
-app.UseSwaggerUi3();
+app.UseSwaggerUi3(config =>
+{
+    config.DocumentPath = "/api/v1/specification.json";
+});
+
 app.UseReDoc(config =>
-    config.Path = "/redoc");
+{
+    config.Path = "/redoc";
+    config.DocumentPath = "/api/v1/specification.json";
+});
 
 app.UseRouting();
 
