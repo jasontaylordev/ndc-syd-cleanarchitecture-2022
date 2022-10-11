@@ -40,6 +40,9 @@ public static class ConfigureServices
             config.Services = new List<ServiceDescriptor>(services);
             config.Path = "/allservices";
         });
+
+        services.AddLogging(configure
+            => configure.AddSeq());
 #endif
 
         return services;
